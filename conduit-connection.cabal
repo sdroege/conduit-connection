@@ -24,6 +24,25 @@ library
   default-language:    Haskell2010
   ghc-options:         -Wall
 
+test-suite Tests
+  type:               exitcode-stdio-1.0
+  x-uses-tf:          true
+  build-depends:      base == 4.*
+                    , transformers >= 0.2 && < 0.5
+                    , network == 2.*
+                    , HUnit >= 1.2 && < 2
+                    , test-framework >= 0.4.1
+                    , test-framework-hunit
+                    , bytestring
+                    , connection
+                    , resourcet >= 1.1 && < 1.2
+                    , conduit >= 1.1 && < 1.3
+                    , conduit-connection
+  ghc-options:        -Wall
+  hs-source-dirs:     tests
+  default-language:   Haskell2010
+  main-is:            Tests.hs
+
 source-repository head
   type:     git
   location: git://github.com/sdroege/conduit-connection.git

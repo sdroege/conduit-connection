@@ -1,6 +1,6 @@
 {-# LANGUAGE RankNTypes #-}
--- | A @conduit@ source and sink based on "Network.Connection" from the
--- @connection@ package, and ResourceT aware constructors.
+-- | A @conduit@ source and sink based on "Network.Connection", and
+-- "Control.Monad.Trans.Resource#t:ResourceT" aware constructors.
 module Network.Connection.Conduit
     ( -- * Source and sink
       sourceConnection
@@ -39,13 +39,13 @@ sinkConnection connection =
   where
     loop = await >>= maybe (return ()) (\bs -> lift (liftIO $ C.connectionPut connection bs) >> loop)
 
--- | Create a new connection from a handle. See 'Network.Connection.connectFromHandle'.
+-- | Create a new connection from a handle. See "Network.Connection.connectFromHandle".
 connectFromHandle :: (MonadResource m) => C.ConnectionContext -> Handle -> C.ConnectionParams -> m C.Connection
 connectFromHandle ctx h params = do
     (_, c) <- liftResourceT $ allocate (C.connectFromHandle ctx h params) C.connectionClose
     return c
 
--- | Create a new connection. See 'Network.Connection.connectTo'.
+-- | Create a new connection. See "Network.Connection.connectTo".
 connectTo :: (MonadResource m) => C.ConnectionContext -> C.ConnectionParams -> m C.Connection
 connectTo ctx params = do
     (_, c) <- liftResourceT $ allocate (C.connectTo ctx params) C.connectionClose

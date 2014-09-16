@@ -84,7 +84,7 @@ testSourceConnection = do
     output <- runResourceT $ do
         ctx <- liftIO initConnectionContext
         c <- CCon.connectTo ctx (ConnectionParams "localhost" p Nothing Nothing)
-        CCon.sourceConnection c $$ CL.fold (\a b -> a ++ [b]) []
+        CCon.sourceConnection c $$ CL.consume
 
     B.concat input @=? B.concat output
 

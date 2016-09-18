@@ -16,7 +16,7 @@ cabal-version:       >=1.10
 library
   exposed-modules:     Network.Connection.Conduit
   build-depends:       base == 4.*
-                     , transformers >= 0.2 && < 0.5
+                     , transformers >= 0.2 && < 0.6
                      , bytestring >=0.10 && <0.11
                      , resourcet >= 1.1 && < 1.2
                      , conduit >=1.1 && <1.3

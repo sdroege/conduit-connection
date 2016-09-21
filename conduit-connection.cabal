@@ -1,5 +1,5 @@
 name:                conduit-connection
-version:             0.1.0.2
+version:             0.1.0.3
 synopsis:            Conduit source and sink for Network.Connection.
 description:
     @conduit-connection@ provides a "Data.Conduit" source and sink based on
